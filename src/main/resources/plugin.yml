@@ -1,0 +1,9 @@
+name: DrugAPITest
+main: me.Andrew.APITEST.Main
+version: 1
+author: ToxicHosting
+depends: [DrugAPI]
+commands:
+   drugs:
+   druginfo:
+   getdrug:
