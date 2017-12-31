@@ -1,6 +1,7 @@
 package me.Andrew.APITEST;
 
 import me.Andrew.DrugAPI.DrugEvent;
+import me.Andrew.DrugAPI.DrugInteractEvent;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -73,5 +74,10 @@ public class CustomItemHandle implements Listener {
 		p.sendMessage(MA.cc("&cThis is running in the new events system"));
 		p.getInventory().addItem(drug.getDrugItem());
 		p.sendMessage(MA.cc(drug.getDisplayName() + " &aHas been added to your inventory"));
+	}
+
+	@EventHandler
+	public void onDrugInteract(DrugInteractEvent e){
+		e.getPlayer().sendMessage("Action "+e.getAction().toString()+" with "+e.getDrug().getDisplayName());
 	}
 }
