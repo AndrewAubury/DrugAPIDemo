@@ -78,6 +78,6 @@ public class CustomItemHandle implements Listener {
 
 	@EventHandler
 	public void onDrugInteract(DrugInteractEvent e){
-		e.getPlayer().sendMessage("Action "+e.getAction().toString()+" with "+e.getDrug().getDisplayName());
+		e.getPlayer().sendMessage("Action "+e.getAction().toString()+" with "+e.getDrug().getDisplayName() + " while sneaking? " + e.getPlayer().isSneaking());
 	}
 }
