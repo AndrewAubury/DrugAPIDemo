@@ -1,5 +1,6 @@
 package me.Andrew.APITEST;
 
+import me.Andrew.DrugAPI.DrugEvent;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -51,18 +52,26 @@ public class CustomItemHandle implements Listener {
 				Drug drug = drugapi.getDrugFromID(e.getCurrentItem().getTypeId());
 				if (drug != null) {
 					Player p = (Player) e.getView().getPlayer();
-					p.getInventory().addItem(drug.getDrugItem());
-					p.sendMessage(MA.cc(drug.getDisplayName() + " &aHas been added to your inventory"));
+
+					//Action called here!!!
+					drug.runAction("giveitem",p);
 				}
 			}
 
 		}
 
 	}
+
 	@EventHandler
-	public void onSpiderClick(PlayerInteractEntityEvent e) {
-		if (e.getRightClicked().getType() == EntityType.SPIDER) {
-			e.getRightClicked().setPassenger(e.getPlayer());
+	public void onDrugEvent(DrugEvent e){
+		if(!e.getEvent().equalsIgnoreCase("giveitem")){
+			return;
 		}
+		Player p = e.getP();
+		Drug drug = e.getDrug();
+
+		p.sendMessage(MA.cc("&cThis is running in the new events system"));
+		p.getInventory().addItem(drug.getDrugItem());
+		p.sendMessage(MA.cc(drug.getDisplayName() + " &aHas been added to your inventory"));
 	}
 }
